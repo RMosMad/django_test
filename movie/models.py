@@ -6,6 +6,7 @@ class Movies(models.Model):
     description = models.CharField(max_length=250)
     image = models.ImageField(upload_to='movie/images/')
     date = models.DateField()
+    clasificacion = models.CharField(max_length=10)
     url = models.URLField(blank=True)
 
     def __str__(self) -> str:
