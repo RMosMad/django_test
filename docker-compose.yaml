@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: .
+    container_name: django_test_app
+    restart: always
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    ports:
+      - "3100:8000"
+    networks:
+      - backnet
+
+  db:
+    image: postgres
+    container_name: django_test_db
+    restart: always
+    # healthcheck:
+    #   test: ['CMD-SHELL', 'pg_isready']
+    #   interval: 3s
+    #   retries: 5
+    #   start_period: 30s
+    #   timeout: 5s
+    ports:
+      - 5432:5432
+    networks:
+      - backnet
+    # secrets:
+    #   - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+
+volumes:
+  db-data:
+  # pgadmin-data:
+
+networks:
+  backnet:
+    
