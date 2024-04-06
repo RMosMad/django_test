@@ -29,12 +29,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'news' %}">News</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out ({{ user.username }})</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
                     </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex" role="search">
                     <input name="inputSearchMovie" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

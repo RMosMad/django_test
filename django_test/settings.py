@@ -137,6 +137,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'django_test/static/',
 ]
 
-
+LOGIN_URL = 'login'  
+# This redirects a user (who is not logged in) to the login page when they attempt to access an authorized page.
 
 
