@@ -35,7 +35,11 @@ def detail(request, movie_id: int):
 def create_review(request, movie_id: int):
     movie = get_object_or_404(Movies, pk=movie_id)
     if request.method == 'GET':
-        return render(request, 'create_review.html', {'form': ReviewForm, 'movie': movie})
+        context = {
+            'form': ReviewForm, 
+            'movie': movie
+        }
+        return render(request, 'create_review.html', context)
     else:
         try:
             form = ReviewForm(request.POST)
