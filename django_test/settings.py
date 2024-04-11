@@ -157,4 +157,13 @@ STATICFILES_DIRS = [
 LOGIN_URL = 'login'  
 # This redirects a user (who is not logged in) to the login page when they attempt to access an authorized page.
 
+# Email server configuration
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# For sending emails to console without a SMTP server (TESTING)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
