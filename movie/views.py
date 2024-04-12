@@ -47,7 +47,7 @@ def create_review(request, movie_id: int):
             new_review.user = request.user
             new_review.movie = movie
             new_review.save()
-            return redirect('detail', new_review.movie.id)
+            return redirect('movie:detail', new_review.movie.pk)
         except ValueError:
             return render(request, 'create_review.html', {'form': ReviewForm, 'error': 'Wrong data passed in'})
 
@@ -56,12 +56,12 @@ def edit_review(request, review_id: int):
     review = get_object_or_404(Review, pk=review_id, user=request.user)
     if request.method == 'GET':
         form = ReviewForm(instance=review)
-        return render(request, 'edit_review.html', {'form':form, 'review': review})
+        return render(request, 'movie:edit_review.html', {'form':form, 'review': review})
     else:
         try:
             form = ReviewForm(request.POST, instance=review)
             form.save()
-            return redirect('detail', review.movie.id)
+            return redirect('movie:detail', review.movie.pk)
         except ValueError:
             return render(request, 'edit_review.html', {'form':form, 'review': review, 'error':'Bad data in form'})
 
@@ -69,7 +69,7 @@ def edit_review(request, review_id: int):
 def delete_review(request, review_id: int):
     review = get_object_or_404(Review, pk=review_id, user=request.user)
     review.delete()
-    return redirect('detail', review.movie.id)
+    return redirect('movie:detail', review.movie.pk)
 
 
 

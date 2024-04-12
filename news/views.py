@@ -28,7 +28,7 @@ def news(request):
     news_list = News.objects.all().order_by('-date')
 
     # pagination 3 news per page
-    paginator = Paginator(news_list, 3)
+    paginator = Paginator(news_list, 1)
     page_number = request.GET.get('page', 1)
 
     try:
